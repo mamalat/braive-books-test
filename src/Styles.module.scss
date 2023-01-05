@@ -1,0 +1,157 @@
+.wrap {
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.container {
+  width: 100%;
+  max-width: 60rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  border: 0;
+  padding: 1rem;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(black, 0.05);
+  transition: all 0.2s ease-out;
+  max-width: 24rem;
+  width: 100%;
+  background: white;
+  align-self: center;
+  display: inline-flex;
+
+  @media (max-width: 660px) {
+    margin: 0;
+  }
+
+  &:focus, &:active {
+    max-width: 30rem;
+  }
+}
+
+.results {
+  padding: 1.5rem 0;
+  text-align: center;
+
+  &Empty, &Initial {
+    padding: 10rem 2rem;
+    text-color: lightgrey;
+
+    img {
+      width: 50%;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  &Searching {
+    text-color: lightgrey;
+  }
+
+  &Books {
+    display: grid;
+    justify-content: space-evenly;
+    grid-template-columns: repeat(4, calc(100%/4));
+    gap: 2rem 0.5rem;
+
+    @media (max-width: 960px) {
+      grid-template-columns: repeat(3, calc(100%/3));
+    }
+
+    @media (max-width: 660px) {
+      grid-template-columns: repeat(2, calc(100%/2));
+    }
+
+    @media (max-width: 460px) {
+      grid-template-columns: 100%;
+    }
+  }
+}
+
+.book {
+  text-align: center;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus &Cover {
+    border: 0.1875rem solid #3367d6;
+    padding: calc(0.75rem - 0.1875rem);
+
+    &Img {
+      transform: scale(1.05);
+      box-shadow: 0 0.75rem 0.75rem rgba(black, 0.1);
+    }
+  }
+
+  &:hover &CoverImg {
+    transform: scale(1.05);
+    box-shadow: 0 0.75rem 0.75rem rgba(black, 0.1);
+  }
+
+  &Cover {
+    border-radius: 0.5rem;
+    width: 8rem;
+    height: 11.9375rem;
+    background-color: white;
+    background-image: url('../public/missing-cover.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 5rem;
+    border: 0;
+    padding: 0.75rem;
+    box-shadow: 0 0.5rem 1rem rgba(black, 0.05);
+    display: inline-flex;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 0.8rem;
+    box-sizing: content-box;
+
+    &Img {
+      z-index: 1;
+      position: relative;
+      border-radius: 0.5rem;
+      box-shadow: 0 0.25rem 0.5rem rgba(black, 0.15);
+      transition: all 0.2s ease;
+    }
+
+    &Backdrop {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 125%;
+      filter: blur(1rem);
+      z-index: 0;
+      opacity: 0.5;
+    }
+  }
+
+  &Title {
+    max-width: 12.5rem;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: bold;
+    font-size: 0.8rem;
+  }
+
+  &Author {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: bold;
+    font-size: 0.75rem;
+    color: gray;
+  }
+}
